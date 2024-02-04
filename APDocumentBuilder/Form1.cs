@@ -134,7 +134,7 @@ namespace APDocumentBuilder
 		{
 			string results = "[\"" + titleBox.Text + "\"] = {" + Environment.NewLine + "\ttype=\"create\"," + Environment.NewLine + "\trestriction = {" + Environment.NewLine + "\t\tjob = {";
 			if (jobRestrictions.Count == 0)
-				results += "enable = false, jobs={}},"+Environment.NewLine;
+				results += "enable = false, jobs={}},";
 			else
 			{
 				results += Environment.NewLine + "\t\t\tenable = true," + Environment.NewLine + "\t\t\t jobs={" + Environment.NewLine;
@@ -162,10 +162,10 @@ namespace APDocumentBuilder
 						results += "\"all\"," + Environment.NewLine;
 					}
 				}
-				results += "\t\t}"+Environment.NewLine+"\t}," + Environment.NewLine;
+				results += "\t\t\t}" + Environment.NewLine + "\t\t},";
 			}
 
-			results += "\t\tgang = {";
+			results += Environment.NewLine+"\t\tgang = {";
 
 			if (gangRestrictions.Count == 0)
 				results += "enable = false, gangs={}},";
@@ -222,21 +222,19 @@ namespace APDocumentBuilder
 				results += "\t\t{ id = \"i" + ai.ToString() + "\", label = \"" + item.label + "\", type = \"" + item.type + "\", placement = \"" + item.placement + "\", required = \"" + item.required + "\", value = \"\"}," + Environment.NewLine;
 				ai++;
 			}
-			results = results.Trim();
-			results = results.Trim(',') + Environment.NewLine + "\t}," + Environment.NewLine + "\textended_information = {" + Environment.NewLine;
+			results = results.Trim().Trim(',') + Environment.NewLine + "\t}," + Environment.NewLine + "\textended_information = {" + Environment.NewLine;
 			ai = 1;
 			foreach (InformationItem item in extendedItems)
 			{
 				results += "\t\t{ id = \"e" + ai.ToString() + "\", label = \"" + item.label + "\", type = \"" + item.type + "\", placement = \"" + item.placement + "\", required = \"" + item.required + "\", value = \"\"}," + Environment.NewLine;
 				ai++;
 			}
-			results = results.Trim();
-			results = results.Trim(',') + Environment.NewLine + "\t}," + Environment.NewLine + "\tterms_and_conditions = {" + Environment.NewLine;
+			results = results.Trim().Trim(',') + Environment.NewLine + "\t}," + Environment.NewLine + "\tterms_and_conditions = {" + Environment.NewLine;
 			foreach (string item in termsItems)
 			{
-				results += "\t\t{label = \"" + item + "\"},";
+				results += "\t\t{label = \"" + item + "\"},"+Environment.NewLine;
 			}
-			results = results.Trim(',') + Environment.NewLine + "\t}," + Environment.NewLine + "\tsign = \"\"" + Environment.NewLine + "},";
+			results = results.Trim().Trim(',') + Environment.NewLine + "\t}," + Environment.NewLine + "\tsign = \"\"" + Environment.NewLine + "},";
 			Clipboard.SetText(results);
 
 			MessageBox.Show("The results have been copied to your clipboard");
@@ -251,14 +249,27 @@ namespace APDocumentBuilder
 			titleBox.Clear();
 			logoBox.Clear();
 			fromBox.Clear();
+
 			descriptionBox.Clear();
 			disclaimerBox.Clear();
+
 			informationItems.Clear();
 			informationBox.Items.Clear();
+
 			extendedItems.Clear();
 			extendedInformationBox.Items.Clear();
+
 			termsItems.Clear();
 			termsAndConditionsBox.Items.Clear();
+
+			jobRestrictions.Clear();
+			jobRestrictionListbox.Items.Clear();
+			
+			gangRestrictions.Clear();
+			jobRestrictionListbox.Items.Clear();
+
+			citizenRestrictions.Clear();
+			citizenRestrictionListbox.Items.Clear();
 
 			tabControl1.SelectedIndex = 0;
 		}
@@ -303,21 +314,21 @@ namespace APDocumentBuilder
 
 		private void deleteRestrictionButton_Click(object sender, EventArgs e)
 		{
-			if(jobRestrictionListbox.SelectedIndex != -1)
+			if (jobRestrictionListbox.SelectedIndex != -1)
 			{
 				string selected = jobRestrictionListbox.Items[jobRestrictionListbox.SelectedIndex].ToString();
 				jobRestrictionListbox.Items.Remove(selected);
 				string job = selected.Split(" - ")[0];
 				jobRestrictions.Remove(job);
 			}
-			if(gangRestrictionListBox.SelectedIndex != -1)
+			if (gangRestrictionListBox.SelectedIndex != -1)
 			{
 				string selected = gangRestrictionListBox.Items[gangRestrictionListBox.SelectedIndex].ToString();
 				gangRestrictionListBox.Items.Remove(selected);
 				string job = selected.Split(" - ")[0];
 				gangRestrictions.Remove(job);
 			}
-			if(citizenRestrictionListbox.SelectedIndex != -1)
+			if (citizenRestrictionListbox.SelectedIndex != -1)
 			{
 				string selected = citizenRestrictionListbox.Items[citizenRestrictionListbox.SelectedIndex].ToString();
 				citizenRestrictions.Remove(selected);

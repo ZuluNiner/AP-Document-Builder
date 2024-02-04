@@ -526,6 +526,7 @@
 			Controls.Add(resetFormButton);
 			Controls.Add(label1);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			Name = "MainForm";
 			Text = "AP Document Builder";
 			Load += MainForm_Load;

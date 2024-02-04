@@ -251,14 +251,26 @@ namespace APDocumentBuilder
 			titleBox.Clear();
 			logoBox.Clear();
 			fromBox.Clear();
+
 			descriptionBox.Clear();
 			disclaimerBox.Clear();
+
 			informationItems.Clear();
 			informationBox.Items.Clear();
+
 			extendedItems.Clear();
 			extendedInformationBox.Items.Clear();
+
 			termsItems.Clear();
 			termsAndConditionsBox.Items.Clear();
+
+			gangRestrictions.Clear();
+			jobRestrictions.Clear();
+			citizenRestrictions.Clear();
+
+			gangRestrictionListBox.Items.Clear();
+			jobRestrictionListbox.Items.Clear();
+			citizenRestrictionListbox.Items.Clear();
 
 			tabControl1.SelectedIndex = 0;
 		}
@@ -303,21 +315,21 @@ namespace APDocumentBuilder
 
 		private void deleteRestrictionButton_Click(object sender, EventArgs e)
 		{
-			if(jobRestrictionListbox.SelectedIndex != -1)
+			if (jobRestrictionListbox.SelectedIndex != -1)
 			{
 				string selected = jobRestrictionListbox.Items[jobRestrictionListbox.SelectedIndex].ToString();
 				jobRestrictionListbox.Items.Remove(selected);
 				string job = selected.Split(" - ")[0];
 				jobRestrictions.Remove(job);
 			}
-			if(gangRestrictionListBox.SelectedIndex != -1)
+			if (gangRestrictionListBox.SelectedIndex != -1)
 			{
 				string selected = gangRestrictionListBox.Items[gangRestrictionListBox.SelectedIndex].ToString();
 				gangRestrictionListBox.Items.Remove(selected);
 				string job = selected.Split(" - ")[0];
 				gangRestrictions.Remove(job);
 			}
-			if(citizenRestrictionListbox.SelectedIndex != -1)
+			if (citizenRestrictionListbox.SelectedIndex != -1)
 			{
 				string selected = citizenRestrictionListbox.Items[citizenRestrictionListbox.SelectedIndex].ToString();
 				citizenRestrictions.Remove(selected);

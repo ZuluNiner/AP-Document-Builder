@@ -5,9 +5,9 @@
 #### Buy AP-Documents from Tebex --> https://ap-scripts.tebex.io/
 #### Join the AP SCRIPTS Discord --> https://discord.gg/8Cn3EjfzrM
 
+## How to Use
 ![image](https://github.com/ZuluNiner/AP-Document-Builder/assets/51116173/bd14aa5e-17ca-40f0-8e0a-436faf4a3b6e)
 
-## How to Use
 #### Document Title
 This is the title of the document, this section is used for the 'title' parameter in the document.
 

@@ -132,12 +132,12 @@ namespace APDocumentBuilder
 
 		private void generateDocumentButton_Click(object sender, EventArgs e)
 		{
-			string results = "[\"" + titleBox.Text + "\"] = {" + Environment.NewLine + "\ttype=\"create\"," + Environment.NewLine + "\trestriction = {" + Environment.NewLine + "\t\tjob = {" + Environment.NewLine + "\t\t\t";
+			string results = "[\"" + titleBox.Text + "\"] = {" + Environment.NewLine + "\ttype=\"create\"," + Environment.NewLine + "\trestriction = {" + Environment.NewLine + "\t\tjob = {";
 			if (jobRestrictions.Count == 0)
-				results += "enable = false, jobs={}},";
+				results += "enable = false, jobs={}},"+Environment.NewLine;
 			else
 			{
-				results += "enable = true," + Environment.NewLine + "\t\t\t jobs={" + Environment.NewLine;
+				results += Environment.NewLine + "\t\t\tenable = true," + Environment.NewLine + "\t\t\t jobs={" + Environment.NewLine;
 				foreach (KeyValuePair<string, string> restriction in jobRestrictions)
 				{
 					string[] grades = null;
@@ -162,16 +162,16 @@ namespace APDocumentBuilder
 						results += "\"all\"," + Environment.NewLine;
 					}
 				}
-				results += "\t\t}}," + Environment.NewLine;
+				results += "\t\t}"+Environment.NewLine+"\t}," + Environment.NewLine;
 			}
 
-			results += "\t\tgang = {" + Environment.NewLine + "\t\t\tenable = ";
+			results += "\t\tgang = {";
 
 			if (gangRestrictions.Count == 0)
-				results += "false, gangs={}},";
+				results += "enable = false, gangs={}},";
 			else
 			{
-				results += "true," + Environment.NewLine + "\t\t\tgangs={" + Environment.NewLine;
+				results += Environment.NewLine + "\t\t\tenable = true," + Environment.NewLine + "\t\t\tgangs={" + Environment.NewLine;
 				foreach (KeyValuePair<string, string> restriction in gangRestrictions)
 				{
 					string[] grades = null;
@@ -201,7 +201,7 @@ namespace APDocumentBuilder
 
 			results += Environment.NewLine + "\t\t" + "citizenid = ";
 			if (citizenRestrictions.Count == 0)
-				results += "{enable = false, id = {}}" + Environment.NewLine + "\t\t},";
+				results += "{enable = false, id = {}}" + Environment.NewLine + "\t},";
 			else
 			{
 				results += "{" + Environment.NewLine + "\t\t\tenable = true," + Environment.NewLine + "\t\t\tid = {";
@@ -251,26 +251,14 @@ namespace APDocumentBuilder
 			titleBox.Clear();
 			logoBox.Clear();
 			fromBox.Clear();
-
 			descriptionBox.Clear();
 			disclaimerBox.Clear();
-
 			informationItems.Clear();
 			informationBox.Items.Clear();
-
 			extendedItems.Clear();
 			extendedInformationBox.Items.Clear();
-
 			termsItems.Clear();
 			termsAndConditionsBox.Items.Clear();
-
-			gangRestrictions.Clear();
-			jobRestrictions.Clear();
-			citizenRestrictions.Clear();
-
-			gangRestrictionListBox.Items.Clear();
-			jobRestrictionListbox.Items.Clear();
-			citizenRestrictionListbox.Items.Clear();
 
 			tabControl1.SelectedIndex = 0;
 		}
@@ -315,21 +303,21 @@ namespace APDocumentBuilder
 
 		private void deleteRestrictionButton_Click(object sender, EventArgs e)
 		{
-			if (jobRestrictionListbox.SelectedIndex != -1)
+			if(jobRestrictionListbox.SelectedIndex != -1)
 			{
 				string selected = jobRestrictionListbox.Items[jobRestrictionListbox.SelectedIndex].ToString();
 				jobRestrictionListbox.Items.Remove(selected);
 				string job = selected.Split(" - ")[0];
 				jobRestrictions.Remove(job);
 			}
-			if (gangRestrictionListBox.SelectedIndex != -1)
+			if(gangRestrictionListBox.SelectedIndex != -1)
 			{
 				string selected = gangRestrictionListBox.Items[gangRestrictionListBox.SelectedIndex].ToString();
 				gangRestrictionListBox.Items.Remove(selected);
 				string job = selected.Split(" - ")[0];
 				gangRestrictions.Remove(job);
 			}
-			if (citizenRestrictionListbox.SelectedIndex != -1)
+			if(citizenRestrictionListbox.SelectedIndex != -1)
 			{
 				string selected = citizenRestrictionListbox.Items[citizenRestrictionListbox.SelectedIndex].ToString();
 				citizenRestrictions.Remove(selected);
